@@ -3,6 +3,7 @@ import * as Widget from "./widgets";
 import * as Storage from "./storage";
 import * as Options from "./options";
 import * as Fullscreen from "./fullscreen";
+import "./fonts";
 import "./style";
 
 const localeStr = undefined;
