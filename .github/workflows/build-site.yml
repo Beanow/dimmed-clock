@@ -1,0 +1,32 @@
+name: build-site
+
+on:
+  pull_request: []
+  push:
+    branches:
+      - master
+
+jobs:
+  BuildSite:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      # See https://github.com/actions/setup-node
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      # See https://github.com/actions/cache/blob/master/examples.md#node---npm
+      - name: NPM Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Our own build / publish
+      - run: .github/build.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
