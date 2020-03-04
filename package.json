@@ -24,6 +24,9 @@
     "sirv-cli": "^0.4.5"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "fscreen": "^1.0.2",
     "preact": "^10.1.0",
     "preact-render-to-string": "^5.1.2"
   }
