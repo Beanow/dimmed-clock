@@ -22,20 +22,22 @@ const dateFormatOption = {
 export default class App extends Component {
   constructor() {
     super();
-
-    // Recall from previous settings.
-    const {paneColor, fontFamily} = Storage.get();
-
     this.state = {
       date: new Date(),
-      fontFamily: fontFamily || Options.Fonts[0],
-      paneColor: paneColor || Options.Colors[0],
+      fontFamily: Options.Fonts[0],
+      paneColor: Options.Colors[0],
       timeFormat: new Intl.DateTimeFormat(localeStr, timeFormatOptions),
       dateFormat: new Intl.DateTimeFormat(localeStr, dateFormatOption),
     };
   }
 
   componentDidMount() {
+    const {paneColor, fontFamily} = Storage.get();
+    this.setState({
+      fontFamily: fontFamily || Options.Fonts[0],
+      paneColor: paneColor || Options.Colors[0],
+    });
+
     this.timer = setInterval(() => {
       this.setState({date: new Date()});
     }, 1000);
