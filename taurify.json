@@ -1,5 +1,5 @@
 {
-  "api": null,
+  "api": "https://api.cnp-test.io/taurify",
   "productName": "dimmed-clock",
   "version": "0.1.0",
   "identifier": "dev.beanow.dimmed-clock",
@@ -7,6 +7,8 @@
   "devSrc": "http://0.0.0.0:8080/",
   "beforeDevCommand": "npm run dev -- --clear=false",
   "beforeBuildCommand": "npm run build",
+  "cloudOrgSlug": "qa-bean",
+  "cloudAppSlug": "dimmed-clock",
   "app": {
     "icon": "assets/icon.png",
     "windows": [
@@ -21,7 +23,7 @@
     ],
     "singleInstance": false
   },
-  "publicKey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDBBMDQzRDlFQTQxODMwM0UKUldRK01CaWtuajBFQ3ZSNXBKZGJOKzA3dzhHMjI2QmsxRXFaQ3JKaWZYVGxqWW5iZXRIQ08xNFcK",
+  "publicKey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEExRUJEN0EyMzZBRTc0MjQKUldRa2RLNDJvdGZyb1pvNjRTb2RBb2lmaFZxWFFMWlNoZllJWE9mWkpGTWtSLzUwakRZQUtDUUgK",
   "iOS": null,
   "android": {
     "targets": [
