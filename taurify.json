@@ -5,7 +5,7 @@
   "identifier": "dev.beanow.dimmed-clock",
   "productionSrc": "./build",
   "devSrc": "http://0.0.0.0:8080/",
-  "beforeDevCommand": "npm run dev",
+  "beforeDevCommand": "npm run dev -- --clear=false",
   "beforeBuildCommand": "npm run build",
   "app": {
     "icon": "assets/icon.png",
