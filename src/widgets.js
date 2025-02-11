@@ -5,6 +5,7 @@ export const Clock = ({date, timeFormat, dateFormat}) => (
   <Fragment>
     <h1 className="time">{timeFormat.format(date)}</h1>
     <h2 className="date">{dateFormat.format(date)}</h2>
+    <p className="date">Also Hello Taurify</p>
   </Fragment>
 );
 

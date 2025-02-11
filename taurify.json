@@ -1,7 +1,7 @@
 {
   "api": "https://api.cnp-test.io/taurify",
   "productName": "dimmed-clock",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "identifier": "dev.beanow.dimmed-clock",
   "productionSrc": "./build",
   "devSrc": "http://0.0.0.0:8080/",
