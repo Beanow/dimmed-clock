@@ -1,0 +1,42 @@
+{
+  "api": null,
+  "productName": "dimmed-clock",
+  "version": "0.1.0",
+  "identifier": "dev.beanow.dimmed-clock",
+  "productionSrc": "./build",
+  "devSrc": "http://0.0.0.0:8080/",
+  "beforeDevCommand": "npm run dev",
+  "beforeBuildCommand": "npm run build",
+  "app": {
+    "icon": "assets/icon.png",
+    "windows": [
+      {
+        "label": "main",
+        "width": 1200.0,
+        "height": 800.0,
+        "minWidth": 1000.0,
+        "minHeight": 800.0,
+        "title": "dimmed-clock"
+      }
+    ],
+    "singleInstance": false
+  },
+  "publicKey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDBBMDQzRDlFQTQxODMwM0UKUldRK01CaWtuajBFQ3ZSNXBKZGJOKzA3dzhHMjI2QmsxRXFaQ3JKaWZYVGxqWW5iZXRIQ08xNFcK",
+  "iOS": null,
+  "android": {
+    "targets": [
+      {
+        "bundle": "aab"
+      }
+    ]
+  },
+  "windows": null,
+  "linux": {
+    "targets": [
+      {
+        "bundle": "appimage"
+      }
+    ]
+  },
+  "macOS": null
+}
