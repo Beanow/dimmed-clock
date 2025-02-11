@@ -1,7 +1,6 @@
-import fscreen from "fscreen";
+import {getCurrentWindow} from "@crabnebula/taurify-api/window";
 
-export const toggle = () => {
-  fscreen.fullscreenElement
-    ? fscreen.exitFullscreen()
-    : fscreen.requestFullscreen(document.body);
+export const toggle = async () => {
+  const w = getCurrentWindow();
+  await w.setFullscreen(!(await w.isFullscreen()));
 };
