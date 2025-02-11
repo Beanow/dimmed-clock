@@ -19,6 +19,51 @@ const dateFormatOption = {
   year: "numeric",
 };
 
+import { check } from '@crabnebula/taurify-api/updater'
+import { relaunch } from '@crabnebula/taurify-api/process'
+
+(async () => {
+  try {
+    const update = await check()
+  
+    if (update) {
+      console.log("found update", update)
+      let contentLength = 0
+      let downloaded = 0
+      update.downloadAndInstall((event) => {
+        switch (event.event) {
+          case 'Started':
+            contentLength = event.data.contentLength
+            console.log('download started, total bytes:', contentLength)
+            break
+          case 'Progress':
+            downloaded += event.data.chunkLength
+            console.log('download progress', Math.round(downloaded / contentLength * 100))
+            break
+          case 'Finished':
+            console.log('Installation complete, restarting...')
+            setTimeout(async () => {
+              // the update can either be an app update, or an over-the-air update
+              if (update.kind === 'app') {
+                // for app updates we must restart the app
+                await relaunch()
+              } else {
+                // for over-the-air updates we can just reload the application
+                window.location.reload()
+              }
+            }, 2000)
+            break
+        }
+      })
+    } else {
+      console.log('Already up to date')
+    }
+  } catch (e) {
+    console.error(e)
+    throw e;
+  }
+})();
+
 export default class App extends Component {
   constructor() {
     super();

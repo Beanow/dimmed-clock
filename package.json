@@ -25,6 +25,7 @@
     "taurify": "^1.0.0"
   },
   "dependencies": {
+    "@crabnebula/taurify-api": "^1.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "fscreen": "^1.0.2",
