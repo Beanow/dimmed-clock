@@ -26,7 +26,7 @@ import {relaunch} from "@crabnebula/taurify-api/process";
   try {
     // Webpack doesn't like going into this method otherwise.
     if (typeof window === "undefined") return;
-    
+
     const update = await check();
 
     if (update) {
@@ -55,7 +55,7 @@ import {relaunch} from "@crabnebula/taurify-api/process";
                 await relaunch();
               } else {
                 // for over-the-air updates we can just reload the application
-                // global.window.location.reload()
+                window.location.reload()
               }
             }, 2000);
             break;
