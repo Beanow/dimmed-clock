@@ -1,0 +1,32 @@
+name: Taurify Release Process
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CN_APPLICATION: cn-testing/bean-dimmed-clock
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+
+      - name: install dependencies
+        run: npm install
+
+      - name: trigger release
+        env:
+          CN_API_KEY: ${{ secrets.CN_API_KEY }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
+        run: npm exec taurify build
