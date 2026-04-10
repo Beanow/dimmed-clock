@@ -3,7 +3,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import {faExpand} from "@fortawesome/free-solid-svg-icons";
 
 const minimalIcon = ({prefix, iconName, icon}) => () => {
-  const [width, height, _unused_ligatures, _unused_unicode, svgPathData] = icon;
+  const [width, height, , , svgPathData] = icon;
   return (
     <svg
       className={`svg-inline--fa fa-${iconName} fa-w-14`}

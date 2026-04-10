@@ -21,7 +21,7 @@ pnpm install --frozen-lockfile
 pnpm run build
 
 # Push our build to gh-pages
-cd build
+cd dist
 git init
 git config user.name "github-actions"
 git config user.email "github-actions@users.noreply.github.com"

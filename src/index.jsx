@@ -1,10 +1,10 @@
-import {Component} from "preact";
+import {Component, render} from "preact";
 import * as Widget from "./widgets";
 import * as Storage from "./storage";
 import * as Options from "./options";
 import * as Fullscreen from "./fullscreen";
-import "./fonts";
-import "./style";
+import "./fonts.css";
+import "./style.css";
 
 const localeStr = undefined;
 const timeFormatOptions = {
@@ -81,3 +81,5 @@ export default class App extends Component {
     );
   }
 }
+
+render(<App />, document.getElementById('app'));
