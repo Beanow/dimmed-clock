@@ -23,7 +23,7 @@ h2 {
 	/* These will be overridden in-app */
 	background: #222;
 	color: #444;
-	font-family: "Lato Thin", sans-serif;
+	font-family: "Lato Thin";
 }
 
 .time {

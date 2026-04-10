@@ -4,20 +4,16 @@
 	font-display: swap;
 	font-weight: 400;
 	src:
-		local("Roboto Regular "),
-		local("Roboto-Regular"),
-		url("../assets/roboto-regular.woff2") format("woff2"),
-		url("../assets/roboto-regular.woff") format("woff");
+		url("../assets/roboto-regular.min.woff2") format("woff2"),
+		url("../assets/roboto-regular.min.woff") format("woff");
 }
 
 @font-face {
 	font-family: "Lato Thin";
 	font-style: normal;
 	font-display: swap;
-	font-weight: 100;
+	font-weight: 400;
 	src:
-		local("Lato Thin "),
-		local("Lato-Thin"),
-		url("../assets/lato-thin.woff2") format("woff2"),
-		url("../assets/lato-thin.woff") format("woff");
+		url("../assets/lato-thin.min.woff2") format("woff2"),
+		url("../assets/lato-thin.min.woff") format("woff");
 }

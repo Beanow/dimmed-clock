@@ -1,4 +1,4 @@
-export const Fonts = ["Lato Thin, sans-serif", "Roboto, sans-serif"];
+export const Fonts = ["Lato Thin", "Roboto"];
 
 export const Colors = [
 	{bg: "#000000", fg: "#222222"},
