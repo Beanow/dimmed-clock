@@ -18,9 +18,9 @@ export default defineConfig([
 			"no-unused-vars": [
 				"warn",
 				{
-					argsIgnorePattern: "^_$",
-					varsIgnorePattern: "^_$",
-					caughtErrorsIgnorePattern: "^_$",
+					argsIgnorePattern: "^_",
+					varsIgnorePattern: "^_",
+					caughtErrorsIgnorePattern: "^_",
 				},
 			],
 			// We have several constant arrays to walk.
@@ -32,5 +32,8 @@ export default defineConfig([
 		plugins: {css},
 		language: "css/css",
 		extends: ["css/recommended"],
+		rules: {
+			"css/font-family-fallbacks": ["off"],
+		},
 	},
 ]);
