@@ -1,28 +1,39 @@
 import js from "@eslint/js";
+import css from "@eslint/css";
 import globals from "globals";
+import react from "@eslint-react/eslint-plugin";
+import { defineConfig } from "eslint/config";
 
-export default [
-  { ignores: ["build/**"] },
+export default defineConfig([
   {
-    ...js.configs.recommended,
+    files: ["**/*.{js,mjs,cjs,jsx}"],
+    extends: [
+      js.configs.recommended,
+      react.configs.recommended,
+    ],
     languageOptions: {
+      globals: globals.browser,
       ecmaVersion: 2022,
       sourceType: "module",
-      globals: globals.browser,
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-      },
+      parserOptions: { ecmaFeatures: { jsx: true } },
     },
     rules: {
-      ...js.configs.recommended.rules,
-      // Security
-      "no-eval": "error",
-      "no-implied-eval": "error",
-      "no-new-func": "error",
-      // Quality
-      "no-var": "error",
-      "eqeqeq": "error",
-      "no-unused-vars": ["error", { args: "none", varsIgnorePattern: "^h$" }],
+      "no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_$",
+          varsIgnorePattern: "^_$",
+          caughtErrorsIgnorePattern: "^_$",
+        },
+      ],
+      // We have several constant arrays to walk.
+      "@eslint-react/no-array-index-key": ["off"]
     },
   },
-];
+  {
+    files: ["**/*.css"],
+    plugins: { css },
+    language: "css/css",
+    extends: ["css/recommended"],
+  },
+]);

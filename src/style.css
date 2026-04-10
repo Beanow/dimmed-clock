@@ -21,7 +21,7 @@ h2 {
 	/* These will be overridden in-app */
 	background: #222;
 	color: #444;
-	font-family: "Lato Thin";
+	font-family: "Lato Thin", sans-serif;
 }
 
 .time {
@@ -37,15 +37,15 @@ h2 {
 	top: 10px;
 	right: 10px;
 	height: 32px;
-  font-size: 32px;
-  cursor: pointer;
+	font-size: 32px;
+	cursor: pointer;
 }
 
 .colorPicker {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  height: 32px;
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	height: 32px;
 }
 
 .colorPicker .swatch {

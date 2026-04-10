@@ -1,4 +1,4 @@
-import {Component, render} from "preact";
+import { Component, render } from "preact";
 import * as Widget from "./widgets";
 import * as Storage from "./storage";
 import * as Options from "./options";
@@ -22,24 +22,19 @@ const dateFormatOption = {
 export default class App extends Component {
   constructor() {
     super();
+    const { paneColor, fontFamily } = Storage.get();
     this.state = {
       date: new Date(),
-      fontFamily: Options.Fonts[0],
-      paneColor: Options.Colors[0],
+      fontFamily: fontFamily || Options.Fonts[0],
+      paneColor: paneColor || Options.Colors[0],
       timeFormat: new Intl.DateTimeFormat(localeStr, timeFormatOptions),
       dateFormat: new Intl.DateTimeFormat(localeStr, dateFormatOption),
     };
   }
 
   componentDidMount() {
-    const {paneColor, fontFamily} = Storage.get();
-    this.setState({
-      fontFamily: fontFamily || Options.Fonts[0],
-      paneColor: paneColor || Options.Colors[0],
-    });
-
     this.timer = setInterval(() => {
-      this.setState({date: new Date()});
+      this.setState({ date: new Date() });
     }, 1000);
   }
 
@@ -48,27 +43,27 @@ export default class App extends Component {
   }
 
   remember(overrides) {
-    const {paneColor, fontFamily} = this.state;
-    Storage.set({paneColor, fontFamily, ...overrides});
+    const { paneColor, fontFamily } = this.state;
+    Storage.set({ paneColor, fontFamily, ...overrides });
   }
 
-  setColor({fg, bg}) {
-    const paneColor = {fg, bg};
-    this.setState({paneColor});
-    this.remember({paneColor});
+  setColor({ fg, bg }) {
+    const paneColor = { fg, bg };
+    this.setState({ paneColor });
+    this.remember({ paneColor });
   }
 
   setFont(fontFamily) {
-    this.setState({fontFamily});
-    this.remember({fontFamily});
+    this.setState({ fontFamily });
+    this.remember({ fontFamily });
   }
 
   render() {
-    const {paneColor, fontFamily, date, timeFormat, dateFormat} = this.state;
+    const { paneColor, fontFamily, date, timeFormat, dateFormat } = this.state;
     return (
-      <Widget.Pane {...{paneColor, fontFamily}}>
+      <Widget.Pane {...{ paneColor, fontFamily }}>
         <Widget.FullScreen onClick={Fullscreen.toggle} />
-        <Widget.Clock {...{date, timeFormat, dateFormat}} />
+        <Widget.Clock {...{ date, timeFormat, dateFormat }} />
         <Widget.ColorPicker
           setColor={this.setColor.bind(this)}
           colorOptions={Options.Colors}
@@ -82,4 +77,4 @@ export default class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('app'));
+render(<App />, document.getElementById("app"));
