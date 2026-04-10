@@ -17,8 +17,8 @@ fi
 cd $(git -C ${GITHUB_WORKSPACE} rev-parse --show-toplevel)
 
 # Install and build
-npm ci
-npm run build
+pnpm install --frozen-lockfile
+pnpm run build
 
 # Push our build to gh-pages
 cd build

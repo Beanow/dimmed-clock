@@ -2,9 +2,13 @@
   "private": true,
   "name": "dimmed-clock",
   "version": "0.0.0",
+  "engines": {
+    "node": "^24",
+    "pnpm": "^10"
+  },
   "license": "MIT",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "start": "if-env NODE_ENV=production && pnpm run serve || pnpm run dev",
     "build": "preact build",
     "serve": "preact build && sirv build --cors --single",
     "dev": "preact watch",
