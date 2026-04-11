@@ -32,10 +32,15 @@ export default class App extends Component {
 		};
 	}
 
+	tick() {
+		const date = new Date();
+		document.title = `${this.state.timeFormat.format(date)} - Dimmed Clock`;
+		this.setState({date});
+	}
+
 	componentDidMount() {
-		this.timer = setInterval(() => {
-			this.setState({date: new Date()});
-		}, 1000);
+		this.tick();
+		this.timer = setInterval(() => this.tick(), 1000);
 	}
 
 	componentWillUnmount() {
