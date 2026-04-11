@@ -77,3 +77,14 @@ export const FullScreen = ({onClick}) => (
 		<Icon.Expand />
 	</a>
 );
+
+export const RepoLink = () => (
+	<a
+		className="repo-link"
+		href="https://github.com/Beanow/dimmed-clock/"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<Icon.Github />
+	</a>
+);

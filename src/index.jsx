@@ -69,6 +69,7 @@ export default class App extends Component {
 		return (
 			<Widget.Pane {...{paneColor, fontFamily}}>
 				<Widget.FullScreen onClick={Fullscreen.toggle} />
+				<Widget.RepoLink />
 				<Widget.Clock {...{date, timeFormat, dateFormat}} />
 				<Widget.ColorPicker
 					setColor={this.setColor.bind(this)}

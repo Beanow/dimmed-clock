@@ -1,6 +1,7 @@
 import "preact";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import {faExpand} from "@fortawesome/free-solid-svg-icons";
+import {faGithub} from "@fortawesome/free-brands-svg-icons";
 
 const minimalIcon =
 	({prefix, iconName, icon}) =>
@@ -22,3 +23,4 @@ const minimalIcon =
 	};
 
 export const Expand = minimalIcon(faExpand);
+export const Github = minimalIcon(faGithub);
