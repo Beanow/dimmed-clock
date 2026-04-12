@@ -14,7 +14,7 @@ pnpm build        # prod build → dist/
 pnpm serve        # serve dist/ via sirv (SPA, CORS)
 pnpm lint         # ESLint on src/
 pnpm format       # Prettier
-pnpm subset-fonts # regen subsetted fonts in assets/ (after updating source fonts)
+pnpm subset-fonts # regen subsetted fonts in assets/ (after updating source fonts or CHARS)
 ```
 
 No tests.
@@ -30,3 +30,7 @@ Single-page Preact app. All source in [src/](src/):
 - [icons.jsx](src/icons.jsx) — Minimal Font Awesome SVG icon (expand only).
 
 `localStorage` key: `beanow:dimmed-clock:config`
+
+## Font Subsetting
+
+Fonts subsetted to `CHARS` in [scripts/subset-fonts.mjs](scripts/subset-fonts.mjs). New visible text → verify all chars in `CHARS`. If not: update `CHARS`, run `pnpm subset-fonts`. Missing chars render blank.
