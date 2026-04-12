@@ -20,7 +20,7 @@ const dateFormat = new Intl.DateTimeFormat(undefined, {
 });
 
 function App() {
-	const [date, setDate] = useState(new Date());
+	const [date, setDate] = useState(() => new Date());
 	const [fontFamily, setFontFamily] = useState(
 		() => Storage.get().fontFamily || Options.Fonts[0]
 	);
