@@ -97,9 +97,9 @@ export const Pane = ({paneColor, fontFamily, children}) => (
 );
 
 export const FullScreen = ({onClick}) => (
-	<a className="fullscreen" onClick={onClick}>
+	<button className="fullscreen" onClick={onClick}>
 		<Icon.Expand />
-	</a>
+	</button>
 );
 
 export const RepoLink = () => (
