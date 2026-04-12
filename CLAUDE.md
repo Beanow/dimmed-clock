@@ -33,4 +33,5 @@ Single-page Preact app. All source in [src/](src/):
 
 ## Font Subsetting
 
-Fonts subsetted to `CHARS` in [scripts/subset-fonts.mjs](scripts/subset-fonts.mjs). New visible text → verify all chars in `CHARS`. If not: update `CHARS`, run `pnpm subset-fonts`. Missing chars render blank.
+`CHARS` in [scripts/subset-fonts.mjs](scripts/subset-fonts.mjs). Missing chars → blank. No error.
+`src/` adds visible text → check new chars in `CHARS`. Gap → update + `pnpm subset-fonts`. Before task done.
