@@ -1,10 +1,22 @@
 import {Fragment} from "preact";
 import * as Icon from "./icons";
 
+function tzOffset(date) {
+	const offset = -date.getTimezoneOffset();
+	const sign = offset >= 0 ? "+" : "-";
+	const hours = Math.floor(Math.abs(offset) / 60);
+	const mins = Math.abs(offset) % 60;
+	return mins
+		? `UTC${sign}${hours}:${String(mins).padStart(2, "0")}`
+		: `UTC${sign}${hours}`;
+}
+
 export const Clock = ({date, timeFormat, dateFormat}) => (
 	<Fragment>
 		<h1 className="time">{timeFormat.format(date)}</h1>
-		<h2 className="date">{dateFormat.format(date)}</h2>
+		<h2 className="date">
+			{dateFormat.format(date)} · {tzOffset(date)}
+		</h2>
 	</Fragment>
 );
 

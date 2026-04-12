@@ -4,7 +4,7 @@ import {readFileSync, writeFileSync} from "fs";
 // Characters used by the clock: digits, colon, slash, space, and ASCII letters
 // for day/month names (e.g. "Monday, January 01 2025")
 const CHARS =
-	" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:,./";
+	" ·+-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789:,./";
 
 const fonts = [
 	{
