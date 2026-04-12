@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-Guidance for Claude Code (claude.ai/code) in this repo.
-
 ## Project Overview
 
 Dimmed Clock: fullscreen low-distraction clock for secondary monitors. Preact 10 + Vite.
@@ -21,8 +19,6 @@ pnpm subset-fonts # regen subsetted fonts in assets/ (after updating source font
 
 No tests.
 
-Prefer `pnpm why <pkg>` or `pnpm list` over reading `pnpm-lock.yaml`.
-
 ## Architecture
 
 Single-page Preact app. All source in [src/](src/):
@@ -33,19 +29,4 @@ Single-page Preact app. All source in [src/](src/):
 - [fullscreen.js](src/fullscreen.js) — Thin wrapper over `fscreen` for fullscreen toggle.
 - [icons.jsx](src/icons.jsx) — Minimal Font Awesome SVG icon (expand only).
 
-Component tree:
-
-```
-App
-└── Pane (bg/fg colors from scheme)
-    ├── FullScreen button
-    ├── Clock (HH:MM + date, vp-relative font sizes)
-    ├── ColorPicker (3 dark schemes)
-    └── FontPicker (Lato Thin / Roboto)
-```
-
 `localStorage` key: `beanow:dimmed-clock:config`
-
-## Code Style
-
-ESLint enforces `@eslint-react` rules. Unused vars prefixed `_` ignored. CSS linted. Run `pnpm format` before committing.
