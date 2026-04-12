@@ -14,14 +14,18 @@ pnpm build        # prod build → dist/
 pnpm serve        # serve dist/ via sirv (SPA, CORS)
 pnpm lint         # ESLint on src/
 pnpm format       # Prettier
-pnpm subset-fonts # regen subsetted fonts in assets/ (after updating source fonts or CHARS)
+pnpm subset-fonts # regen subsetted fonts in assets/ (after updating CHARS)
 ```
 
-No tests.
+No tests. CI only runs `pnpm build` — run `pnpm lint` locally before committing.
+
+## Design Intent
+
+Low-distraction. UI changes must preserve this.
 
 ## Architecture
 
-Single-page Preact app. All source in [src/](src/):
+Single-page Preact app. Source in [src/](src/), build scripts in [scripts/](scripts/). Push to `main` → GitHub Actions builds + deploys to `gh-pages`.
 
 - [index.jsx](src/index.jsx) — Root `App`. Owns state: current time (1s `setInterval`), selected font, pane color. Persists to `localStorage` via [storage.js](src/storage.js).
 - [widgets.jsx](src/widgets.jsx) — All UI: `Pane` (styled container), `Clock` (time + date), `ColorPicker` (swatches), `FontPicker`.
