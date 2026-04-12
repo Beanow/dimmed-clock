@@ -1,4 +1,5 @@
-import {Component, render} from "preact";
+import {render} from "preact";
+import {useState, useEffect} from "preact/hooks";
 import * as Widget from "./widgets";
 import * as Storage from "./storage";
 import * as Options from "./options";
@@ -6,82 +7,61 @@ import * as Fullscreen from "./fullscreen";
 import "./fonts.css";
 import "./style.css";
 
-const localeStr = undefined;
-const timeFormatOptions = {
+const timeFormat = new Intl.DateTimeFormat(undefined, {
 	hour: "2-digit",
 	minute: "2-digit",
 	hour12: false,
-};
-const dateFormatOption = {
+});
+const dateFormat = new Intl.DateTimeFormat(undefined, {
 	weekday: "long",
 	day: "numeric",
 	month: "long",
 	year: "numeric",
-};
+});
 
-export default class App extends Component {
-	constructor() {
-		super();
-		const {paneColor, fontFamily} = Storage.get();
-		this.state = {
-			date: new Date(),
-			fontFamily: fontFamily || Options.Fonts[0],
-			paneColor: paneColor || Options.Colors[0],
-			timeFormat: new Intl.DateTimeFormat(localeStr, timeFormatOptions),
-			dateFormat: new Intl.DateTimeFormat(localeStr, dateFormatOption),
-		};
-	}
+function App() {
+	const [date, setDate] = useState(new Date());
+	const [fontFamily, setFontFamily] = useState(
+		() => Storage.get().fontFamily || Options.Fonts[0]
+	);
+	const [paneColor, setPaneColor] = useState(
+		() => Storage.get().paneColor || Options.Colors[0]
+	);
 
-	tick() {
-		const date = new Date();
-		document.title = `${this.state.timeFormat.format(date)} - Dimmed Clock`;
-		this.setState({date});
-	}
+	// Updates title only when time string changed.
+	const time = timeFormat.format(date);
+	useEffect(() => {
+		document.title = `${time} - Dimmed Clock`;
+	}, [time]);
 
-	componentDidMount() {
-		this.tick();
-		this.timer = setInterval(() => this.tick(), 1000);
-	}
+	useEffect(() => {
+		const timer = setInterval(() => setDate(new Date()), 1000);
+		return () => clearInterval(timer);
+	}, []);
 
-	componentWillUnmount() {
-		clearInterval(this.timer);
-	}
-
-	remember(overrides) {
-		const {paneColor, fontFamily} = this.state;
-		Storage.set({paneColor, fontFamily, ...overrides});
-	}
-
-	setColor({fg, bg}) {
+	function setColor({fg, bg}) {
 		const paneColor = {fg, bg};
-		this.setState({paneColor});
-		this.remember({paneColor});
+		setPaneColor(paneColor);
+		Storage.set({paneColor, fontFamily});
 	}
 
-	setFont(fontFamily) {
-		this.setState({fontFamily});
-		this.remember({fontFamily});
+	function setFont(fontFamily) {
+		setFontFamily(fontFamily);
+		Storage.set({paneColor, fontFamily});
 	}
 
-	render() {
-		const {paneColor, fontFamily, date, timeFormat, dateFormat} =
-			this.state;
-		return (
-			<Widget.Pane {...{paneColor, fontFamily}}>
-				<Widget.FullScreen onClick={Fullscreen.toggle} />
-				<Widget.RepoLink />
-				<Widget.Clock {...{date, timeFormat, dateFormat}} />
-				<Widget.ColorPicker
-					setColor={this.setColor.bind(this)}
-					colorOptions={Options.Colors}
-				/>
-				<Widget.FontPicker
-					setFont={this.setFont.bind(this)}
-					fontOptions={Options.Fonts}
-				/>
-			</Widget.Pane>
-		);
-	}
+	return (
+		<Widget.Pane {...{paneColor, fontFamily}}>
+			<Widget.FullScreen onClick={Fullscreen.toggle} />
+			<Widget.RepoLink />
+			<Widget.Clock {...{date, timeFormat, dateFormat}} />
+			<Widget.ColorPicker
+				setColor={setColor}
+				colorOptions={Options.Colors}
+			/>
+			<Widget.FontPicker setFont={setFont} fontOptions={Options.Fonts} />
+		</Widget.Pane>
+	);
 }
 
 render(<App />, document.getElementById("app"));
