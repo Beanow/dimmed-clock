@@ -25,7 +25,7 @@ export const Swatch = ({bg, fg, setColor}) => (
 		className="swatch"
 		viewBox="0 0 100 100"
 		xmlns="http://www.w3.org/2000/svg"
-		onClick={(_) => setColor({fg, bg})}
+		onClick={() => setColor({fg, bg})}
 	>
 		<defs>
 			<mask id={`only-top-${fg}`}>
@@ -75,7 +75,7 @@ export const FontPicker = ({setFont, fontOptions}) => (
 				key={i}
 				className="font"
 				style={{fontFamily: family}}
-				onClick={(_) => setFont(family)}
+				onClick={() => setFont(family)}
 			>
 				84
 			</a>
