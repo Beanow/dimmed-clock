@@ -28,15 +28,27 @@ export const Swatch = ({bg, fg, setColor}) => (
 		onClick={(_) => setColor({fg, bg})}
 	>
 		<defs>
-			<mask id="only-top">
+			<mask id={`only-top-${fg}`}>
 				<rect x="0" y="0" width="100" height="50" fill="white" />
 			</mask>
-			<mask id="only-bottom">
+			<mask id={`only-bottom-${bg}`}>
 				<rect x="0" y="50" width="100" height="50" fill="white" />
 			</mask>
 		</defs>
-		<circle cx="50" cy="50" r="48" mask="url(#only-top)" fill={fg} />
-		<circle cx="50" cy="50" r="48" mask="url(#only-bottom)" fill={bg} />
+		<circle
+			cx="50"
+			cy="50"
+			r="48"
+			mask={`url(#only-top-${fg})`}
+			fill={fg}
+		/>
+		<circle
+			cx="50"
+			cy="50"
+			r="48"
+			mask={`url(#only-bottom-${bg})`}
+			fill={bg}
+		/>
 		<circle
 			cx="50"
 			cy="50"
