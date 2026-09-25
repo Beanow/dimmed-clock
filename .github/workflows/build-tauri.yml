@@ -13,7 +13,7 @@ jobs:
     # Bundles link against this runner's glibc, which sets the distro floor.
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -28,13 +28,10 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: src-tauri
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/setup@v3
         with:
           cache: true
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: package.json
-      - run: pnpm install --frozen-lockfile
+          require-lockfile: true
       - run: pnpm tauri build
       - uses: actions/upload-artifact@v7
         with:
