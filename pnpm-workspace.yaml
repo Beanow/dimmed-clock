@@ -1,3 +1,2 @@
-useNodeVersion: "24.14.1"
 allowBuilds:
   esbuild: true
