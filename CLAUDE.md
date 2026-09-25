@@ -28,18 +28,19 @@ Low-distraction. UI changes must preserve this.
 
 ## Architecture
 
-Single-page Preact app. Source in [src/](src/), build scripts in [scripts/](scripts/). Push to `main` → GitHub Actions builds + deploys to `gh-pages`.
+Single-page Preact app in [src/](src/): [index.jsx](src/index.jsx) owns state, UI lives in [widgets.jsx](src/widgets.jsx). Push to `main` → GitHub Actions builds + deploys to `gh-pages`.
 
-- [index.jsx](src/index.jsx) — Root `App`. Owns state: current time (1s `setInterval`), selected font, pane color. Persists to `localStorage` via [storage.js](src/storage.js).
-- [widgets.jsx](src/widgets.jsx) — All UI: `Pane` (styled container), `Clock` (time + date), `ColorPicker` (swatches), `FontPicker`.
-- [options.js](src/options.js) — Static config: fonts + color schemes (3 dark themes).
-- [fullscreen.js](src/fullscreen.js) — Fullscreen toggle. `fscreen` on web, native window API in Tauri.
-- [external.js](src/external.js) — Opens links in the system browser when in Tauri.
-- [icons.jsx](src/icons.jsx) — Minimal Font Awesome SVG icon (expand only).
-
-Tauri shell in [src-tauri/](src-tauri/) is minimal: serves `dist/`, plus the opener and updater plugins. AppImages silently self-update from CrabNebula Cloud on launch (applied next launch). `v*` tags → [release-tauri.yml](.github/workflows/release-tauri.yml) publishes a signed release; the tag must match `version` in `package.json` (`tauri.conf.json` reads it from there; keep `Cargo.toml` in sync). Tauri-only JS imports go through `isTauri()` + dynamic `import()` so they stay out of the web bundle. New Tauri API calls need permissions in [capabilities/default.json](src-tauri/capabilities/default.json).
+Tauri shell in [src-tauri/](src-tauri/) is minimal: serves `dist/`, plus a few plugins. AppImages silently self-update from CrabNebula Cloud on launch (applied next launch). Tauri-only JS imports go through `isTauri()` + dynamic `import()` so they stay out of the web bundle. New Tauri API calls need permissions in [capabilities/default.json](src-tauri/capabilities/default.json).
 
 `localStorage` key: `beanow:dimmed-clock:config`
+
+## Releasing
+
+`v*` tags → [release-tauri.yml](.github/workflows/release-tauri.yml) publishes a signed release to CrabNebula Cloud. The tag must match `version` in `package.json` (`tauri.conf.json` reads it from there).
+
+1. Bump `version` in `package.json` and `src-tauri/Cargo.toml`.
+2. `cargo update -p dimmed-clock --offline` in `src-tauri/` to sync `Cargo.lock`.
+3. Commit, tag `vX.Y.Z`, push both.
 
 ## Font Subsetting
 
