@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  BuildLinux:
+  build-linux:
     name: Build Linux bundles
     # Bundles link against this runner's glibc, which sets the distro floor.
     runs-on: ubuntu-24.04

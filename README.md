@@ -26,5 +26,5 @@ The AppImage checks there on launch and silently installs updates, applied on th
 Requires these repository secrets:
 
 - `CN_API_KEY`: CrabNebula Cloud API key.
-- `TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: updater signing key, from `pnpm tauri signer generate`.
-  Its public key goes in `plugins.updater.pubkey` of `src-tauri/tauri.conf.json`.
+- `TAURI_SIGNING_PRIVATE_KEY`: passwordless updater signing key, from `pnpm tauri signer generate`.
+  Its public key is `plugins.updater.pubkey` in `src-tauri/tauri.conf.json`.
