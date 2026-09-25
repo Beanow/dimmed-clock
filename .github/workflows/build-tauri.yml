@@ -37,7 +37,8 @@ jobs:
         with:
           cache: true
           require-lockfile: true
-      - run: pnpm tauri build
+      # Signing (incl. updater artifacts) needs the release key; only release-tauri has it.
+      - run: pnpm tauri build --no-sign
       - uses: actions/upload-artifact@v7
         with:
           name: dimmed-clock-linux

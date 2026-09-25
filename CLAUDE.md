@@ -16,7 +16,8 @@ pnpm lint         # ESLint on src/
 pnpm format       # Prettier
 pnpm subset-fonts # regen subsetted fonts in assets/ (after updating CHARS)
 pnpm tauri dev    # desktop app + HMR (needs Rust + webkit2gtk-4.1)
-pnpm tauri build  # desktop bundles (deb, rpm, AppImage) → src-tauri/target/release/bundle/
+pnpm tauri build --no-sign  # desktop bundles (deb, rpm, AppImage) → src-tauri/target/release/bundle/
+                            # (signing needs the release key; CI release does that)
 ```
 
 No tests. CI only builds (web deploy + Tauri Linux bundles as artifacts) — run `pnpm lint` locally before committing.

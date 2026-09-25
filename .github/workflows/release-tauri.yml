@@ -50,8 +50,7 @@ jobs:
           cache: true
           require-lockfile: true
 
-      # Updater artifacts need the signing key, so only enable them here.
-      - run: pnpm tauri build --config '{"bundle":{"createUpdaterArtifacts":true}}'
+      - run: pnpm tauri build
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
 
