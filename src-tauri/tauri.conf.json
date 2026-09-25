@@ -38,7 +38,7 @@
 	},
 	"plugins": {
 		"updater": {
-			"pubkey": "REPLACE_WITH_UPDATER_PUBKEY",
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDIwMjMyMTVEN0RGNjAyNzIKUldSeUF2WjlYU0VqSVBwQTFZb0R6Vkxib3JPNkt6M0ZSSHIxOCtERHNDVUcyRzE3aUVUSktlc2wK",
 			"endpoints": [
 				"https://cdn.crabnebula.app/update/beanow/dimmed-clock/{{target}}-{{arch}}/{{current_version}}"
 			]
