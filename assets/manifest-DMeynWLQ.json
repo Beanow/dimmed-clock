@@ -1,0 +1,9 @@
+{
+	"name": "dimmed-clock",
+	"short_name": "dimmed-clock",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "any",
+	"background_color": "#111111",
+	"theme_color": "#1c3b6a"
+}
