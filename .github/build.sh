@@ -16,8 +16,7 @@ fi
 # Go to project root
 cd $(git -C ${GITHUB_WORKSPACE} rev-parse --show-toplevel)
 
-# Install and build
-pnpm install --frozen-lockfile
+# Build (dependencies are installed by pnpm/setup)
 pnpm run build
 
 # Push our build to gh-pages
