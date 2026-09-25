@@ -1,6 +1,7 @@
 import {Fragment} from "preact";
 import * as Icon from "./icons";
 import {openLink} from "./external";
+import {version} from "../package.json";
 
 function tzOffset(date) {
 	const offset = -date.getTimezoneOffset();
@@ -114,3 +115,5 @@ export const RepoLink = () => (
 		<Icon.Github />
 	</a>
 );
+
+export const Version = () => <span className="version">v{version}</span>;

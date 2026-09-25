@@ -53,7 +53,10 @@ function App() {
 	return (
 		<Widget.Pane {...{paneColor, fontFamily}}>
 			<Widget.FullScreen onClick={Fullscreen.toggle} />
-			<Widget.RepoLink />
+			<div className="top-left">
+				<Widget.RepoLink />
+				<Widget.Version />
+			</div>
 			<Widget.Clock {...{date, timeFormat, dateFormat}} />
 			<Widget.ColorPicker
 				setColor={setColor}
