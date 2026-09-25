@@ -17,3 +17,14 @@ Requires Rust and the [Tauri prerequisites](https://tauri.app/start/prerequisite
 pnpm tauri dev    # run in development
 pnpm tauri build  # build deb, rpm and AppImage bundles
 ```
+
+### Releases
+
+Pushing a `v*` tag matching the version in `src-tauri/tauri.conf.json` publishes a release to [CrabNebula Cloud](https://crabnebula.dev/cloud/).
+The AppImage checks there on launch and silently installs updates, applied on the next launch.
+
+Requires these repository secrets:
+
+- `CN_API_KEY`: CrabNebula Cloud API key.
+- `TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: updater signing key, from `pnpm tauri signer generate`.
+  Its public key goes in `plugins.updater.pubkey` of `src-tauri/tauri.conf.json`.
