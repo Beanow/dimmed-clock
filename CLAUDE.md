@@ -19,7 +19,7 @@ pnpm tauri dev    # desktop app + HMR (needs Rust + webkit2gtk-4.1)
 pnpm tauri build  # desktop bundles (deb, rpm, AppImage) → src-tauri/target/release/bundle/
 ```
 
-No tests. CI only runs `pnpm build` — run `pnpm lint` locally before committing.
+No tests. CI only builds (web deploy + Tauri Linux bundles as artifacts) — run `pnpm lint` locally before committing.
 
 ## Design Intent
 
