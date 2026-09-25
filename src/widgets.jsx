@@ -1,5 +1,6 @@
 import {Fragment} from "preact";
 import * as Icon from "./icons";
+import {openLink} from "./external";
 
 function tzOffset(date) {
 	const offset = -date.getTimezoneOffset();
@@ -108,6 +109,7 @@ export const RepoLink = () => (
 		href="https://github.com/Beanow/dimmed-clock/"
 		target="_blank"
 		rel="noopener noreferrer"
+		onClick={openLink}
 	>
 		<Icon.Github />
 	</a>

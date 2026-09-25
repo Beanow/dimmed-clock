@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Dimmed Clock: fullscreen low-distraction clock for secondary monitors. Preact 10 + Vite.
+Dimmed Clock: fullscreen low-distraction clock for secondary monitors. Preact 10 + Vite. Targets web and Tauri v2 (Linux desktop).
 
 ## Commands
 
@@ -15,6 +15,8 @@ pnpm serve        # serve dist/ via sirv (SPA, CORS)
 pnpm lint         # ESLint on src/
 pnpm format       # Prettier
 pnpm subset-fonts # regen subsetted fonts in assets/ (after updating CHARS)
+pnpm tauri dev    # desktop app + HMR (needs Rust + webkit2gtk-4.1)
+pnpm tauri build  # desktop bundles (deb, rpm, AppImage) → src-tauri/target/release/bundle/
 ```
 
 No tests. CI only runs `pnpm build` — run `pnpm lint` locally before committing.
@@ -30,8 +32,11 @@ Single-page Preact app. Source in [src/](src/), build scripts in [scripts/](scri
 - [index.jsx](src/index.jsx) — Root `App`. Owns state: current time (1s `setInterval`), selected font, pane color. Persists to `localStorage` via [storage.js](src/storage.js).
 - [widgets.jsx](src/widgets.jsx) — All UI: `Pane` (styled container), `Clock` (time + date), `ColorPicker` (swatches), `FontPicker`.
 - [options.js](src/options.js) — Static config: fonts + color schemes (3 dark themes).
-- [fullscreen.js](src/fullscreen.js) — Thin wrapper over `fscreen` for fullscreen toggle.
+- [fullscreen.js](src/fullscreen.js) — Fullscreen toggle. `fscreen` on web, native window API in Tauri.
+- [external.js](src/external.js) — Opens links in the system browser when in Tauri.
 - [icons.jsx](src/icons.jsx) — Minimal Font Awesome SVG icon (expand only).
+
+Tauri shell in [src-tauri/](src-tauri/) is minimal: serves `dist/`, plus the opener plugin. Tauri-only JS imports go through `isTauri()` + dynamic `import()` so they stay out of the web bundle. New Tauri API calls need permissions in [capabilities/default.json](src-tauri/capabilities/default.json).
 
 `localStorage` key: `beanow:dimmed-clock:config`
 
