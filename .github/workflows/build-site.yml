@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  BuildSite:
+  build-site:
     name: Build site
     runs-on: ubuntu-latest
     # build.sh pushes the build to gh-pages.
