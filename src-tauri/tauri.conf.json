@@ -35,5 +35,13 @@
 			"icons/icon.icns",
 			"icons/icon.ico"
 		]
+	},
+	"plugins": {
+		"updater": {
+			"pubkey": "REPLACE_WITH_UPDATER_PUBKEY",
+			"endpoints": [
+				"https://cdn.crabnebula.app/update/beanow/dimmed-clock/{{target}}-{{arch}}/{{current_version}}"
+			]
+		}
 	}
 }

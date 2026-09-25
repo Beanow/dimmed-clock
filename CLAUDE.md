@@ -36,7 +36,7 @@ Single-page Preact app. Source in [src/](src/), build scripts in [scripts/](scri
 - [external.js](src/external.js) — Opens links in the system browser when in Tauri.
 - [icons.jsx](src/icons.jsx) — Minimal Font Awesome SVG icon (expand only).
 
-Tauri shell in [src-tauri/](src-tauri/) is minimal: serves `dist/`, plus the opener plugin. Tauri-only JS imports go through `isTauri()` + dynamic `import()` so they stay out of the web bundle. New Tauri API calls need permissions in [capabilities/default.json](src-tauri/capabilities/default.json).
+Tauri shell in [src-tauri/](src-tauri/) is minimal: serves `dist/`, plus the opener and updater plugins. AppImages silently self-update from CrabNebula Cloud on launch (applied next launch). `v*` tags → [release-tauri.yml](.github/workflows/release-tauri.yml) publishes a signed release; the tag must match `version` in `tauri.conf.json`. Tauri-only JS imports go through `isTauri()` + dynamic `import()` so they stay out of the web bundle. New Tauri API calls need permissions in [capabilities/default.json](src-tauri/capabilities/default.json).
 
 `localStorage` key: `beanow:dimmed-clock:config`
 
