@@ -1,8 +1,17 @@
+use tauri::Manager;
 use tauri_plugin_updater::UpdaterExt;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
 	tauri::Builder::default()
+		// Must be registered first. Launching again focuses the existing window.
+		.plugin(tauri_plugin_single_instance::init(|app, _, _| {
+			if let Some(window) = app.get_webview_window("main") {
+				let _ = window.unminimize();
+				let _ = window.show();
+				let _ = window.set_focus();
+			}
+		}))
 		.plugin(tauri_plugin_opener::init())
 		.plugin(tauri_plugin_updater::Builder::new().build())
 		.setup(|app| {
