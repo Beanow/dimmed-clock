@@ -10,8 +10,8 @@ on:
 jobs:
   BuildLinux:
     name: Build Linux bundles
-    # Oldest supported runner, for glibc compatibility of the bundles.
-    runs-on: ubuntu-22.04
+    # Bundles link against this runner's glibc, which sets the distro floor.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - name: Install system dependencies
