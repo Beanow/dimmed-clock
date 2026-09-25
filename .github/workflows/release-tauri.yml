@@ -25,7 +25,7 @@ jobs:
           persist-credentials: false
       - name: Check release config
         run: |
-          conf=src-tauri/tauri.conf.json
+          conf=package.json
           version=$(jq -r .version $conf)
           if [ "v$version" != "$GITHUB_REF_NAME" ]; then
             echo "::error::Tag $GITHUB_REF_NAME doesn't match $conf version $version"
