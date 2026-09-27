@@ -1,6 +1,6 @@
 [package]
 name = "dimmed-clock"
-version = "1.0.0"
+version = "1.0.1"
 description = "Fullscreen low-distraction clock for secondary monitors"
 authors = ["Beanow"]
 license = "MIT"
