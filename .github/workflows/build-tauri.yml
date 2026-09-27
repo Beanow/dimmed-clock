@@ -1,0 +1,49 @@
+name: build-tauri
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-linux:
+    name: Build Linux bundles
+    # Bundles link against this runner's glibc, which sets the distro floor.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwebkit2gtk-4.1-dev \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            patchelf
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - uses: pnpm/setup@v3
+        with:
+          cache: true
+          require-lockfile: true
+      # Signing (incl. updater artifacts) needs the release key; only release-tauri has it.
+      - run: pnpm tauri build --no-sign
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dimmed-clock-linux
+          path: |
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/rpm/*.rpm
+            src-tauri/target/release/bundle/appimage/*.AppImage
+          if-no-files-found: error

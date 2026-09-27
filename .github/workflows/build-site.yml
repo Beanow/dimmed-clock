@@ -5,19 +5,24 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
-  BuildSite:
+  build-site:
     name: Build site
     runs-on: ubuntu-latest
+    # build.sh pushes the build to gh-pages.
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
+      - uses: actions/checkout@v7
         with:
-          version: 10
+          persist-credentials: false
+      - uses: pnpm/setup@v3
+        with:
           cache: true
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: package.json
+          require-lockfile: true
       - run: .github/build.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

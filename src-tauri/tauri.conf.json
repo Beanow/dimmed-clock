@@ -1,0 +1,56 @@
+{
+	"$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+	"productName": "Dimmed Clock",
+	"version": "../package.json",
+	"identifier": "io.github.beanow.dimmed-clock",
+	"build": {
+		"frontendDist": "../dist",
+		"devUrl": "http://localhost:5173",
+		"beforeDevCommand": "pnpm dev",
+		"beforeBuildCommand": "pnpm build"
+	},
+	"app": {
+		"windows": [
+			{
+				"title": "Dimmed Clock",
+				"width": 1280,
+				"height": 900,
+				"resizable": true,
+				"fullscreen": false,
+				"backgroundColor": "#111111"
+			}
+		],
+		"security": {
+			"csp": {
+				"default-src": "'self'",
+				"connect-src": "ipc: http://ipc.localhost"
+			},
+			"devCsp": {
+				"default-src": "'self'",
+				"connect-src": "ipc: http://ipc.localhost ws://localhost:5173",
+				"style-src": "'self' 'unsafe-inline'"
+			}
+		}
+	},
+	"bundle": {
+		"active": true,
+		"createUpdaterArtifacts": true,
+		"targets": ["deb", "rpm", "appimage"],
+		"category": "Utility",
+		"icon": [
+			"icons/32x32.png",
+			"icons/128x128.png",
+			"icons/128x128@2x.png",
+			"icons/icon.icns",
+			"icons/icon.ico"
+		]
+	},
+	"plugins": {
+		"updater": {
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDIwMjMyMTVEN0RGNjAyNzIKUldSeUF2WjlYU0VqSVBwQTFZb0R6Vkxib3JPNkt6M0ZSSHIxOCtERHNDVUcyRzE3aUVUSktlc2wK",
+			"endpoints": [
+				"https://cdn.crabnebula.app/update/beanow/dimmed-clock/{{target}}-{{arch}}/{{current_version}}"
+			]
+		}
+	}
+}
