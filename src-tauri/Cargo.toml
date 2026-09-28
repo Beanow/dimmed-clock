@@ -5,8 +5,7 @@ description = "Fullscreen low-distraction clock for secondary monitors"
 authors = ["Beanow"]
 license = "MIT"
 repository = "https://github.com/Beanow/dimmed-clock"
-edition = "2021"
-rust-version = "1.77.2"
+edition = "2024"
 
 [lib]
 name = "dimmed_clock_lib"
